@@ -244,7 +244,7 @@ extension Reactive where Base == RxBluetoothKitLog {
     public var log: Observable<String> {
         return RxBluetoothKitLog.subject.asObserver()
             .observeOn(MainScheduler.instance)
-            .catchErrorJustReturn("")
+            .catchAndReturn("")
             .share(scope: .whileConnected)
     }
 }
