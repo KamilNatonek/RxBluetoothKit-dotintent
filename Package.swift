@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "RxBluetoothKit",
+    name: "RxBluetoothKit-dotintent",
     platforms: [
         .macOS(.v10_13), .iOS(.v9), .tvOS(.v11), .watchOS(.v4)
     ],
@@ -16,20 +16,20 @@ let package = Package(
     ],
     targets: [
         .target(
-                name: "RxBluetoothKit",
-                dependencies: [
-                    "RxSwift"
-                ],
-                path: ".",
-                exclude: [
-                    "Example",
-                    "Tests",
-                    "Source/Info.plist",
-                    "Source/RxBluetoothKit.h"
-                ],
-                sources: [
-                    "Source"
-                ]
-            )
+            name: "RxBluetoothKit",
+            dependencies: [
+                "RxSwift"
+            ],
+            path: ".",
+            exclude: [
+                "Example",
+                "Tests",
+                "Source/Info.plist",
+                "Source/RxBluetoothKit.h"
+            ],
+            sources: [
+                "Source"
+            ]
+        )
     ]
 )
