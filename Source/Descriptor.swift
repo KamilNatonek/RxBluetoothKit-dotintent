@@ -28,17 +28,15 @@ public class Descriptor {
         self.characteristic = characteristic
     }
 
-    convenience init(descriptor: CBDescriptor, peripheral: Peripheral) {
-        guard let characteristicOfDescriptor = descriptor.characteristic else {
-            fatalError("Descriptor's characteristic is nil!")
-        }
-        guard let serviceOfCharacteristic = characteristicOfDescriptor.service else {
-            fatalError("Characteristic's service is nil!")
-        }
-        let service = Service(peripheral: peripheral, service: serviceOfCharacteristic)
-        let characteristic = Characteristic(characteristic: characteristicOfDescriptor, service: service)
-        self.init(descriptor: descriptor, characteristic: characteristic)
-    }
+    convenience init?(descriptor: CBDescriptor, peripheral: Peripheral) {
+          guard let _characteristic = descriptor.characteristic, let _service = _characteristic.service else {
+              return nil
+          }
+          let service = Service(peripheral: peripheral, service: _service)
+          let characteristic = Characteristic(characteristic: _characteristic, service: service)
+          self.init(descriptor: descriptor, characteristic: characteristic)
+      }
+
 
     /// Function that allow to observe writes that happened for descriptor.
     /// - Returns: Observable that emits `next` with `Descriptor` instance every time when write has happened.

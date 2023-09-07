@@ -40,13 +40,13 @@ public class Characteristic {
         self.service = service
     }
 
-    convenience init(characteristic: CBCharacteristic, peripheral: Peripheral) {
-        guard let serviceOfCharacteristic = characteristic.service else {
-            fatalError("Characteristic's service is nil!")
-        }
-        let service = Service(peripheral: peripheral, service: serviceOfCharacteristic)
-        self.init(characteristic: characteristic, service: service)
-    }
+    convenience init?(characteristic: CBCharacteristic, peripheral: Peripheral) {
+          guard let _service = characteristic.service else {
+              return nil
+          }
+          let service = Service(peripheral: peripheral, service: _service)
+          self.init(characteristic: characteristic, service: service)
+      }
 
     /// Function that triggers descriptors discovery for characteristic.
     /// - returns: `Single` that emits `next` with array of `Descriptor` instances, once they're discovered.
