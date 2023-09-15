@@ -2,8 +2,8 @@ import Foundation
 import RxSwift
 import CoreBluetooth
 
-public protocol ManagerType: class {
-    associatedtype Manager
+public protocol ManagerType: AnyObject {
+    associatedtype Manager 
 
     /// Implementation of CBManager
     var manager: Manager { get }
